@@ -28,6 +28,14 @@
 // - Return a boolean.
 
 function telephoneCheck(str) {
+  if (
+    (str.indexOf("(") > -1 && str.indexOf(")") < 0) ||
+    (str.indexOf(")") > -1 && str.indexOf("(") < 0)
+  ) {
+    // if only a single parentheses is found
+    return false;
+  }
+
   const regex =
     /^[1]?[\s]?[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
 
@@ -37,7 +45,3 @@ function telephoneCheck(str) {
 console.log(telephoneCheck("1 555)555-5555"));
 console.log(telephoneCheck("555)-555-5555"));
 console.log(telephoneCheck("(555-555-5555"));
-
-// ! telephoneCheck("1 555)555-5555") should return false.
-// ! telephoneCheck("555)-555-5555") should return false.
-// ! telephoneCheck("(555-555-5555") should return false.

@@ -28,7 +28,16 @@
 // - Return a boolean.
 
 function telephoneCheck(str) {
-  return true;
+  const regex =
+    /^[1]?[\s]?[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+
+  return regex.test(str);
 }
 
-telephoneCheck("555-555-5555");
+console.log(telephoneCheck("1 555)555-5555"));
+console.log(telephoneCheck("555)-555-5555"));
+console.log(telephoneCheck("(555-555-5555"));
+
+// ! telephoneCheck("1 555)555-5555") should return false.
+// ! telephoneCheck("555)-555-5555") should return false.
+// ! telephoneCheck("(555-555-5555") should return false.
